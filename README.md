@@ -8,7 +8,7 @@ We generate 3 trajectories, from which we construct 3 different DeePC controller
      3. A weighted average of many different trajectories, derived from similar systems (federated)
      
 ## Contents
-- **Main Script (`DPC_BaseLine`)**: The primary script that initializes system parameters, generates data, constructs Hankel matrices, and executes control simulations.
+- **Main Script (`GenerateFigures`)**: The primary script that generates synthetic system data, runs the DeePC control loop, and plots and saves the corresponding figures, as seen in the paper related to this script.
 
 ## Requirements
 - **MatLab Optimization Toolbox (quadprog.m)** Federated DeePC (or any predictive control method), solves a QP at each timestep. This implementation uses MatLabs quadprog, mainly for speed. Other QP programs, such as YALMIP or CVX can be used, but its implementation is not used here.
@@ -43,24 +43,23 @@ We generate 3 trajectories, from which we construct 3 different DeePC controller
    - `PlotFunction.m` is used to visualize system state evolution and control signals.
 
 ## Dependencies (Non-Local Functions)
-The main script relies on the following external functions:
+The main script relies on the following external functions, all collected in the `\Functions\` file:
 
 | Function          | Description |
 |------------------|-------------|
-| `systemDataGen.m` | Generates input-output data for system identification. |
-| `createHankel.m` | Constructs Hankel matrices for DeePC. |
 | `addNoise.m` | Adds noise to signals to test robustness. |
-| `stepStates.m` | Simulates system state evolution using a given controller. |
+| `createHankel.m` | Constructs Hankel matrices for DeePC. |
 | `DeePCcontroller.m` | Implements the DeePC optimization procedure. |
-| `createMatrices.m` | Constructs necessary matrices for DeePC optimization. |
 | `PlotFunction.m` | Generates plots to visualize system performance. |
+| `systemDataGen.m` | Generates input-output data for system identification. |
+| `stepStates.m` | Simulates system state evolution using a given controller. |
 
 ## Running the Script
 To run the project:
-1. Ensure all required functions are in the same directory as the main script, or can be reached by matlab.
-2. Execute `DPC_Baseline.m` in MATLAB.
+1. Ensure athe current matlab directory is that of "\\..\ConferencePaper".
+2. Execute `GenerateFigures.m` in MATLAB.
 3. View generated plots and performance metrics for comparison.
 
-# IEEE Paper
-Feel free to check out the MatLab code in the `ConferencePaper` subsection, which was used to generate experiment data and figures for our submission to the IEEE "Conference on Decision and Control", titled "Toward Federated DeePC: borrowing data from similar systems" 
-- The file `GenerateFigures.m` contains all the required code, together with the files in `init` to regenerate the data and corresponding figures in the paper
+# IEEE style Paper
+The repo contains code for a paper titled "Toward Federated DeePC: borrowing data from similar systems" , which will be posted on ArXiV very soon!
+- The file `GenerateFigures.m` contains all the required code, together with the files in `Functions` to regenerate the data and corresponding figures in the paper
